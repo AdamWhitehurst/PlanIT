@@ -5,7 +5,7 @@ import aws_exports from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react-native';
 Amplify.configure(aws_exports);
 
-
+//Authenticate first
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
