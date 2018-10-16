@@ -1,0 +1,9 @@
+{
+    "bucketName": "planituserdata",
+    "authPolicyName": "s3_amplify_de308b73",
+    "unauthPolicyName": "s3_amplify_de308b73",
+    "authRoleName": "plan-20181016074327-authRole",
+    "unauthRoleName": "plan-20181016074327-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}

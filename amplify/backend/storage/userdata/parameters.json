@@ -1,0 +1,9 @@
+{
+    "bucketName": "planitc3c7c293de314bf1a52e33081e2587da",
+    "authPolicyName": "s3_amplify_329142ff",
+    "unauthPolicyName": "s3_amplify_329142ff",
+    "authRoleName": "plan-20181016075142-authRole",
+    "unauthRoleName": "plan-20181016075142-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": ""
+}
