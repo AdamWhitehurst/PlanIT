@@ -82257,9 +82257,15 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           }],
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 135
+            lineNumber: 136
           }
-        }, _react.default.createElement(_reactNative.FlatList, {
+        }, _react.default.createElement(_reactNative.Text, {
+          style: styles.header,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 139
+          }
+        }, "Mission Control"), _react.default.createElement(_reactNative.FlatList, {
           style: styles.list,
           data: this.state.tasks,
           renderItem: function renderItem(_ref) {
@@ -82268,19 +82274,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             return _react.default.createElement(_reactNative.View, {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 142
+                lineNumber: 147
               }
             }, _react.default.createElement(_reactNative.View, {
               style: styles.listItemCont,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 143
+                lineNumber: 148
               }
             }, _react.default.createElement(_reactNative.Text, {
               style: styles.listItem,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 144
+                lineNumber: 149
               }
             }, item.text), _react.default.createElement(_reactNative.Button, {
               title: "X",
@@ -82289,19 +82295,19 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 147
+                lineNumber: 152
               }
             })), _react.default.createElement(_reactNative.View, {
               style: styles.hr,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 149
+                lineNumber: 154
               }
             }));
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 138
+            lineNumber: 143
           }
         }), _react.default.createElement(_reactNative.TextInput, {
           style: styles.textInput,
@@ -82313,7 +82319,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           returnKeyLabel: "done",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 152
+            lineNumber: 157
           }
         }));
       }
@@ -82362,8 +82368,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       width: "100%"
     },
     listItem: {
-      paddingTop: 30,
-      paddingBottom: 2,
+      paddingTop: 10,
+      paddingBottom: 10,
       fontSize: 18
     },
     hr: {
@@ -82379,9 +82385,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       height: 40,
       paddingRight: 10,
       paddingLeft: 10,
+      paddingBottom: 2,
       borderColor: "gray",
       borderWidth: isAndroid ? 0 : 1,
-      width: "100%"
+      width: "100%",
+      marginBottom: 20
+    },
+    header: {
+      height: 50,
+      marginTop: 50,
+      paddingRight: 10,
+      paddingLeft: 10,
+      fontSize: 24
     }
   });
 

@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
 export default withAuthenticator(App);
 */
 
+
 import React, { Component } from "react";
 import {
   AppRegistry,
@@ -135,6 +136,10 @@ export default class TodoList extends Component {
       <View
         style={[styles.container, { paddingBottom: this.state.viewPadding }]}
       >
+      <Text style={styles.header}>
+      Mission Control
+      </Text>
+
         <FlatList
           style={styles.list}
           data={this.state.tasks}
@@ -189,19 +194,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#F5FCFF",
     padding: viewPadding,
-    paddingTop: 20
+    paddingTop: 20,
   },
   list: {
-    width: "100%"
+    width: "100%",
   },
   listItem: {
-    paddingTop: 30,
-    paddingBottom: 2,
+    paddingTop: 10,
+    paddingBottom: 10,
     fontSize: 18
   },
   hr: {
     height: 1,
-    backgroundColor: "gray"
+    backgroundColor: "gray",
   },
   listItemCont: {
     flexDirection: "row",
@@ -212,10 +217,19 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 10,
     paddingLeft: 10,
+    paddingBottom: 2,
     borderColor: "gray",
     borderWidth: isAndroid ? 0 : 1,
-    width: "100%"
-  }
+    width: "100%",
+    marginBottom: 20,
+  },
+  header:{
+    height: 50,
+    marginTop: 50,
+    paddingRight: 10,
+    paddingLeft: 10,
+    fontSize: 24,
+  }, 
 });
 
 AppRegistry.registerComponent("TodoList", () => TodoList);
