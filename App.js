@@ -13,9 +13,9 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-class App extends Component<Props> {
-  constructor() {
+class App extends Component {
+  constructor(props) {
+    super(props);
     console.log("Start.");
   }
   render() {
