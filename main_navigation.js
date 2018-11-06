@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import AddToDo from './add_todo';
@@ -9,9 +10,8 @@ class AllToDo extends React.Component {
     return (
         <Container>
           <Header><Body><Title>All</Title></Body></Header>
-          <Content><Text>All Section</Text></Content> 
-          <Content><AddToDo /></Content> 
-          <Content><AddToDoButton /></Content>              
+          <Content><AddToDo /></Content>
+          <AddToDoButton style={Theme.fab}/>           
         </Container>
     );
   }
@@ -22,7 +22,7 @@ class ActiveToDo extends React.Component {
     return (
       <Container>
         <Header><Body><Title>Active</Title></Body></Header>
-        <Content><Text>Active Section</Text></Content>    
+        <Content></Content>    
       </Container>
     );
   }
@@ -33,7 +33,7 @@ class CompletedToDo extends React.Component {
     return (
         <Container>
           <Header><Body><Title>Completed</Title></Body></Header>
-          <Content><Text>Completed Section</Text></Content>
+          <Content></Content>
         </Container>
     );
   }
@@ -67,4 +67,12 @@ export default TabNavigator({
   tabBarPosition: 'bottom',
   animationEnabled: true,
   swipeEnabled: false,
+});
+
+const Theme = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+  }
 });
