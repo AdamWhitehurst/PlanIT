@@ -15,6 +15,9 @@ const instructions = Platform.select({
 
 type Props = {};
 class App extends Component<Props> {
+  constructor() {
+    console.log("Start.");
+  }
   render() {
     return (
       <View style={styles.container}>
