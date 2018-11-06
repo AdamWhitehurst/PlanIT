@@ -5,13 +5,40 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import AddToDo from './add_todo';
 import AddToDoButton from './add_todo_button';
 
-class AllToDo extends React.Component {    
-  render() {    
+class AllToDo extends React.Component {  
+  constructor(props) {
+    super(props);
+    this.state = {
+        new_todo: false,
+    };
+  }
+
+  saveToDoData = (todo) => {
+    this.addNewToDo(show = false);
+    console.log("Todo is: " + todo.title + " " + (todo.completed ? "completed!" : "not completed!"));
+  }
+
+  addNewToDo = (show) => {
+    this.setState({
+      new_todo: show
+    });
+  }
+
+  render() { 
+    const {new_todo} = this.state;
+
     return (
         <Container>
-          <Header><Body><Title>All</Title></Body></Header>
-          <Content><AddToDo /></Content>
-          <AddToDoButton style={Theme.fab}/>           
+          <Header><Body><Title>All</Title></Body></Header>         
+          <Content>  
+              {new_todo && 
+                <AddToDo 
+                  onPress = { this.saveToDoData }
+                  onCancel = { this.addNewToDo }
+                />
+              }
+            </Content>             
+            <AddToDoButton style={Theme.fab} onAddNewToDo = { this.addNewToDo }  />              
         </Container>
     );
   }
