@@ -1,13 +1,17 @@
 import React from 'react';
 import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
+import AddToDo from './add_todo';
+import AddToDoButton from './add_todo_button';
 
 class AllToDo extends React.Component {    
   render() {    
     return (
         <Container>
           <Header><Body><Title>All</Title></Body></Header>
-          <Content><Text>All Section</Text></Content>                
+          <Content><Text>All Section</Text></Content> 
+          <Content><AddToDo /></Content> 
+          <Content><AddToDoButton /></Content>              
         </Container>
     );
   }
