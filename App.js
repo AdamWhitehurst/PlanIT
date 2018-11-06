@@ -3,6 +3,10 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react-native';
+import TabNavigator from './main_navigation';
+import { Container } from 'native-base';
+
+
 Amplify.configure(aws_exports);
 
 //Authenticate first
@@ -20,11 +24,7 @@ class App extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <TabNavigator />
     );
   }
 }
