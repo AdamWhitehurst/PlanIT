@@ -1,8 +1,11 @@
+// Navigation Imports
 import React, {Component} from 'react';
+import TabNavigator from './main_navigation';
+// AWS Imports
 import Amplify from 'aws-amplify';
 import aws_exports from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react-native';
-import TabNavigator from './main_navigation';
+// Redux Imports
 import { Provider } from 'react-redux';
 import store from './store/create_store';
 
