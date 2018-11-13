@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import ToDoAll from './components/todo_all';
 
-class CompletedToDoTab extends React.Component {
+class CompletedToDoTab extends Component {
   render() {
     return (
       <ToDoAll show_new_todo = { false } screen = "Completed" />
@@ -11,7 +11,7 @@ class CompletedToDoTab extends React.Component {
   }
 }
 
-class ActiveToDoTab extends React.Component {
+class ActiveToDoTab extends Component {
   render() {
     return (
       <ToDoAll show_new_todo = { false } screen = "Active" />
@@ -19,7 +19,7 @@ class ActiveToDoTab extends React.Component {
   }
 }
 
-class AllToDoTab extends React.Component {   
+class AllToDoTab extends Component {   
   render() {    
     return (
       <ToDoAll show_new_todo = { true } screen = "All" />
