@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import React, { Component } from 'react';
+import { StyleSheet } from 'react-native';
+import { TabBarBottom, TabNavigator } from 'react-navigation';
 import ToDoAll from './components/todo_all';
+import {Icon} from 'native-base';
 
 class CompletedToDoTab extends Component {
   render() {
