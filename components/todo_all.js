@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
 import NewToDo from './new_todo';
 import AddToDoButton from './add_todo_button';
@@ -6,7 +6,7 @@ import ToDoItem from './todo_item';
 import { connect } from 'react-redux';
 import { addTodo, deleteTodo, updateTodo } from '../store/todo_reducer';
 
-class ToDoAll extends React.Component {
+class ToDoAll extends Component {
   
   constructor(props) {
     super(props);
