@@ -1,7 +1,9 @@
 # OSX
 #
 .DS_Store
-
+# React
+#
+.vscode/.react/
 # Xcode
 #
 build/
