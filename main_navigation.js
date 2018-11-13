@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
-import AddToDo from './add_todo';
-import AddToDoButton from './add_todo_button';
+import AddToDo from './components/add_todo';
+import AddToDoButton from './components/add_todo_button';
 
 class AllToDo extends React.Component {  
   constructor(props) {
