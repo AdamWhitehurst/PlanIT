@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Alert} from 'react-native';
 import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
 import NewToDo from './new_todo';
 import AddToDoButton from './add_todo_button';
@@ -16,8 +17,11 @@ class ToDoAll extends Component {
   }
 
   saveToDoData = (todo) => {
-    this.addNewToDo(show = false);
-    this.props.addTodo(todo);    
+    let verified = this.verifyToDo(todo);
+    if (verified){
+      this.addNewToDo(show = false);
+      this.props.addTodo(todo); 
+    }   
   }
 
   addNewToDo = (show) => {
@@ -25,7 +29,18 @@ class ToDoAll extends Component {
       new_todo: show
     });
   }  
-    
+  
+  verifyToDo (todo) {
+    let verified = true;
+    // Empty title check
+    if (todo.title.trim() == '') {
+      Alert.alert ("Hey!","Add a title, dummy!", [{text: 'My bad.', onPress: ()=> {}}]);
+      verified = false;
+    }
+
+    return verified;
+  }
+
   screenFilterTodos = () => {
     const{ screen, todos } = this.props;
     if( screen == "Active"){
@@ -69,7 +84,9 @@ class ToDoAll extends Component {
               { listItm }
               {new_todo && 
                 <NewToDo 
-                  onPress = { this.saveToDoData }
+                  onPress = {
+                    this.saveToDoData
+                    }
                   onCancel = { this.addNewToDo }
                 />
               }
