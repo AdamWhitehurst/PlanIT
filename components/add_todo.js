@@ -30,7 +30,6 @@ export default class AddToDo extends React.Component {
       <ListItem>
         <CheckBox
           checked={completed}
-          //onPress = { () => console.log("set todo as completed") }
           onPress={() => this.setStateUtil("completed", !completed)}
         />
         <Body>
@@ -42,7 +41,6 @@ export default class AddToDo extends React.Component {
         </Body>
         <Button
           transparent
-          //onPress = { () => console.log("put todo in trash") }
           onPress={() => onCancel((show = false))}
         >
           <Icon name={"trash"} />
