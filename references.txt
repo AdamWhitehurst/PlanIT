@@ -1,0 +1,4 @@
+Redux framework explained:
+  https://www.youtube.com/watch?v=9mlwjZL3Fmw
+  https://www.youtube.com/watch?v=KcC8KZ_Ga2M&t=3s
+  https://www.youtube.com/watch?v=93p3LxR9xfM&t=164s
