@@ -1,0 +1,16 @@
+{
+  "explorer.confirmDelete": false,
+  "workbench.activityBar.visible": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "workbench.colorTheme": "Oceanic Next (Sublime)",
+  "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "editor.snippetSuggestions": "top",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "editor.renderWhitespace": "none",
+  "editor.renderControlCharacters": false,
+  "breadcrumbs.enabled": false,
+}
