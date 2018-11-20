@@ -60,10 +60,10 @@ class ToDoAll extends Component {
     const { new_todo } = this.state;    
     const { todos, show_new_todo, screen, deleteTodo, updateTodo } = this.props;
 
-    let listItm = [];
+    let listItem = [];
     if(todos.length > 0){      
       let scrTodos = this.screenFilterTodos();
-      listItm = scrTodos.map( (todo, index) => 
+      listItem = scrTodos.map( (todo, index) => 
         <ToDoItem 
           key = { index } 
           todo = { todo } 
@@ -81,7 +81,7 @@ class ToDoAll extends Component {
                 </Body>                
             </Header>
             <Content>  
-              { listItm }
+              { listItem }
               {new_todo && 
                 <NewToDo 
                   onPress = {
