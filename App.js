@@ -30,13 +30,10 @@ async function loadTodos() {
   Storage.get('todos.txt', {download: true, level: 'protected' })
   .then ((storedTodosData) => {
     let storedTodos = JSON.parse( storedTodosData.Body.toString());
-    console.log("Stored todos: ", storedTodos);
     store.dispatch(loadSavedTodos(storedTodos));
   })
   .catch((error) => {
-    if (error.code == 'NoSuchKey') {
-      console.log('No stored Todos found.');
-    } else {
+    if (!error.code == 'NoSuchKey') {
       console.log("loadTodos() error: ", error); 
     }
   });
