@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Button, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
+import DatePickerExample from './date_picker';
+
 export class BaseModalScreen extends Component {
   render() {
     return (
@@ -9,6 +11,7 @@ export class BaseModalScreen extends Component {
           <Button>
             <Text> My modal is awesome.</Text>
           </Button>
+          <DatePickerExample />
         </Content>
       </Container>
     );
