@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, Button, Text } from 'native-base';
+import { InputGroup, Input, Container, Header, Content, Button, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
+import DatePickerExample from './date_picker';
 export class BaseModalScreen extends Component {
 
   saveToDoData = (todo) => {
@@ -27,9 +28,13 @@ export class BaseModalScreen extends Component {
     return (
       <Container>
         <Content>
-          <Button>
-            <Text> My modal is awesome.</Text>
-          </Button>
+        <Input placeholder = "Title"/>
+        <InputGroup borderType='regular'>
+                        <Input style={{
+                            width: 200, height: 100
+                        }}  multiline={true} placeholder='Description'/>
+                    </InputGroup>
+          <DatePickerExample />
         </Content>
       </Container>
     );
