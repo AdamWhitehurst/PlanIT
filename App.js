@@ -47,7 +47,7 @@ async function saveTodos () {
   let newTodos = JSON.stringify(newStoreData.todo_reducer.todos);
   await Storage.put('todos.txt', newTodos, {level: 'protected'})
   .catch((error) => {
-    console.error("saveTodos() error: ", error);
+    if (!error.code == 'NotImplemented') console.error("saveTodos() error: ", error);
   });
 
 }
