@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
-import { TabBarBottom, TabNavigator } from 'react-navigation';
+import { TabBarBottom, createStackNavigator, TabNavigator } from 'react-navigation';
 import ToDoAll from './components/todo_all';
 import {Icon} from 'native-base';
+import { ModalScreen } from './components/awesome_modal';
 
 class CompletedToDoTab extends Component {
   render() {
@@ -28,7 +28,7 @@ class AllToDoTab extends Component {
   }
 }
 
-export default TabNavigator({
+const MainTabNavigator = TabNavigator({
   All: { screen: AllToDoTab },
   Active: { screen: ActiveToDoTab },
   Completed: { screen: CompletedToDoTab },
@@ -58,10 +58,17 @@ export default TabNavigator({
   swipeEnabled: false,
 });
 
-const Theme = StyleSheet.create({
-  fab: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
+export const RootStack = createStackNavigator(
+  {
+    MainTabNavigator: {
+      screen: MainTabNavigator,
+    },
+    MyModal: {
+      screen: ModalScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
   }
-});
+);

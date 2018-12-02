@@ -6,6 +6,7 @@ import AddToDoButton from './add_todo_button';
 import ToDoItem from './todo_item';
 import { connect } from 'react-redux';
 import { addTodo, deleteTodo, updateTodo } from '../store/todo_reducer';
+import { withNavigation } from 'react-navigation';
 
 class ToDoAll extends Component {
   
@@ -92,7 +93,7 @@ class ToDoAll extends Component {
               }
             </Content>             
             {show_new_todo && 
-              <AddToDoButton onAddNewToDo = { this.addNewToDo }  />
+              <AddToDoButton onAddNewToDo = { () => { this.props.navigation.navigate('MyModal') } }  />
             }
         </Container>
     );
@@ -113,7 +114,9 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
+const withNavigationToDoAll = withNavigation(ToDoAll);
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ToDoAll)
+)(withNavigationToDoAll)

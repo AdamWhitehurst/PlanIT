@@ -1,6 +1,6 @@
 // Navigation Imports
 import React, {Component} from 'react';
-import TabNavigator from './main_navigation';
+import {RootStack} from './main_navigation';
 // AWS Imports
 import Amplify, {Auth, Storage} from 'aws-amplify';
 import aws_exports from './aws-exports';
@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <TabNavigator />
+        <RootStack/>
       </Provider>
     );
   }
