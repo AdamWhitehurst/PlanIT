@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Container, Header, Content, Button, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
 export class BaseModalScreen extends Component {
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-      </View>
+      <Container>
+        <Content>
+          <Button>
+            <Text> My modal is awesome.</Text>
+          </Button>
+        </Content>
+      </Container>
     );
   }
 }
