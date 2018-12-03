@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import { InputGroup, Input, Container, Header, Content, Button, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import DatePickerExample from './date_picker';
-export class BaseModalScreen extends Component {
+import DatePicker from './date_picker';
 
-  saveToDoData = (todo) => {
+
+export class BaseModalScreen extends Component {
+  constructor () {
+    super();
+
+    this.state = {
+      title: 'Enter a title!',
+      description: 'Enter a description!',
+      date : new Date(Date.now()),
+    }
+
+    this.saveToDoData = this.saveToDoData.bind(this);
+  }
+
+  saveToDoData (todo) {
     let verified = this.verifyToDo(todo);
     if (verified){
       this.addNewToDo(show = false);
@@ -23,18 +36,32 @@ export class BaseModalScreen extends Component {
     return verified;
   }
 
+  updateInput (input, value) {
+    this.setState( prevState => {
+      newState = prevState;
+      newState[input] = value;
+      console.log ("New State: ");
+      console.log(newState);
+      return newState;
+    });
+  }
 
   render() {
     return (
       <Container>
+        <Header />
         <Content>
-        <Input placeholder = "Title"/>
-        <InputGroup borderType='regular'>
-                        <Input style={{
-                            width: 200, height: 100
-                        }}  multiline={true} placeholder='Description'/>
-                    </InputGroup>
-          <DatePickerExample />
+        <Input
+        onChangeText={(text) => this.updateInput('title', text)}
+        placeholder = "Title"/>
+        <Input
+        style={{ width: 200, height: 100 }}
+        onChangeText={(text) => this.updateInput('description', text)}
+        multiline={true}
+        placeholder='Description'/>
+
+          <DatePicker setDate={(date) => this.updateInput('date', date )}/>
+          <Button full success onPress={ () => { this.props.navigation.goBack() }}>/* TODO: ADD COOL TEXT HERE */</Button>
         </Content>
       </Container>
     );

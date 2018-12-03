@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import {Alert} from 'react-native';
 import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
 import NewToDo from './new_todo';
-import AddToDoButton from './add_todo_button';
+import SuperFAB from './super_fab';
 import ToDoItem from './todo_item';
 import { connect } from 'react-redux';
 import { addTodo, deleteTodo, updateTodo } from '../store/todo_reducer';
 import { withNavigation } from 'react-navigation';
+import {FilterPicker} from './filter_picker';
+import {Colors} from '../constants/colors';
 
 class ToDoAll extends Component {
   
@@ -57,6 +59,16 @@ class ToDoAll extends Component {
     }
   }
 
+  onUpdateFilters(filter, value) {
+    this.setState( prevState => {
+      newState = prevState;
+      newState[filter] = value;
+      console.log ("New State: ");
+      console.log(newState);
+      return newState;
+    });
+  }
+
   render() {
     const { new_todo } = this.state;    
     const { todos, show_new_todo, screen, deleteTodo, updateTodo } = this.props;
@@ -92,9 +104,7 @@ class ToDoAll extends Component {
                 />
               }
             </Content>             
-            {show_new_todo && 
-              <AddToDoButton onAddNewToDo = { () => { this.props.navigation.navigate('MyModal') } }  />
-            }
+            <SuperFAB onUpdateFilters = {() => { this.onUpdateFilters }} />
         </Container>
     );
   }

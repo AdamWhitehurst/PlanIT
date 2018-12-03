@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
-import { Container, Header, Content, DatePicker, Text } from 'native-base';
-export default class DatePickerExample extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { chosenDate: new Date() };
-    this.setDate = this.setDate.bind(this);
-  }
-  setDate(newDate) {
-    this.setState({ chosenDate: newDate });
-  }
+import { Content, DatePicker, Text } from 'native-base';
+
+
+export default class DataPicker extends Component {
   render() {
     return (
-      <Container>
-        <Header />
         <Content>
           <DatePicker
             defaultDate={new Date(Date.now())}
             minimumDate={ new Date(Date.now())}
-            maximumDate={new Date(2019, 12, 31)}
+            maximumDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
             locale={"en"}
             timeZoneOffsetInMinutes={undefined}
             modalTransparent={false}
@@ -26,14 +18,9 @@ export default class DatePickerExample extends Component {
             placeHolderText="Select date"
             textStyle={{ color: "green" }}
             placeHolderTextStyle={{ color: "#d3d3d3" }}
-            onDateChange={this.setDate}
+            onDateChange={this.props.setDate}
             />
-            <Text>
-              Date: {this.state.chosenDate.toString().substr(4, 12)}
-            </Text>
-
         </Content>
-      </Container>
     );
   }
 }
