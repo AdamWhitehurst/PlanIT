@@ -1,81 +1,87 @@
 import React, {Component} from 'react';
-import {Alert} from 'react-native';
-import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
-import NewToDo from './new_todo';
+import { Container, Header, Title, Content, Body, View, } from 'native-base';
 import SuperFAB from './super_fab';
 import ToDoItem from './todo_item';
 import { connect } from 'react-redux';
 import { addTodo, deleteTodo, updateTodo } from '../store/todo_reducer';
 import { withNavigation } from 'react-navigation';
-import {FilterPicker} from './filter_picker';
-import {Colors} from '../constants/colors';
+import { FilterPicker } from './filter_picker';
+import { Colors } from '../constants/colors';
+import { Priorities } from '../constants/priorities';
 
 class ToDoAll extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
-        new_todo: false,
-        colors: false,
-        priorities: false,
+        showFilter: '',
+        colorFilter: undefined,
+        priorityFilter: undefined,
     };
 
     this.fabs = [
       {
         icon: 'add',
         backgroundColor: 'green',
-        func: () => {this.props.navigation.navigate('MyModal')},
+        func: () => {
+          this.props.navigation.navigate('MyModal')
+        },
       },
       {
         icon: 'ios-star',
         backgroundColor: 'purple',
-        func: () => {this.toggleFilter('priorities')},
+        func: () => {
+          this.toggleFilter('priorities')
+        },
       },
       {
         icon: 'ios-color-palette',
         backgroundColor: 'orange',
-        func: () => {this.toggleFilter('colors')},
+        func: () => {
+          this.toggleFilter('colors')
+        },
+      },
+      {
+        icon: 'ios-backspace',
+        backgroundColor: 'red',
+        func: () => {
+          this.toggleFilter('');
+          this.setState ({
+            colorFilter: undefined,
+            priorityFilter: undefined,
+          });
+        },
       },
 
     ];
   }
 
   toggleFilter (filter) {
-    this.setState ( prevState => {
-      let newState = prevState;
-      newState[filter] = !prevState[filter];
-      console.log(newState);
-      return newState;
-    })
-  }
-
-  saveToDoData = (todo) => {
-    let verified = this.verifyToDo(todo);
-    if (verified){
-      this.addNewToDo(show = false);
-      this.props.addTodo(todo); 
-    }   
-  }
-
-  addNewToDo = (show) => {
-    this.setState({
-      new_todo: show
-    });
-  }  
-  
-  verifyToDo (todo) {
-    let verified = true;
-    // Empty title check
-    if (todo.title.trim() == '') {
-      Alert.alert ("Hey!","Add a title, dummy!", [{text: 'My bad.', onPress: ()=> {}}]);
-      verified = false;
+    if (this.state.showFilter == filter) {
+      this.setState({showFilter: ''});
     }
-
-    return verified;
+    else {
+      this.setState({showFilter: filter});
+    }
   }
 
   screenFilterTodos = () => {
     const{ screen, todos } = this.props;
+    // let todos = [];
+    // for (let todo in this.props.todos) {
+    //   let success = true;
+    //   if(this.state.colorFilter) {
+    //     success = (this.state.colorFilter == todo.color);
+    //   }
+    //   if(this.state.priorityFilter) {
+    //     success = (this.state.priorityFilter == todo.priority);
+    //   }
+    //   if (success) {
+    //     todos.push(todo);
+    //   }
+    // }
+
+
     if( screen == "Active"){
       return todos.filter(function(todo) {
         return !todo.completed;
@@ -93,15 +99,12 @@ class ToDoAll extends Component {
     this.setState( prevState => {
       newState = prevState;
       newState[filter] = value;
-      console.log ("New State: ");
-      console.log(newState);
       return newState;
     });
   }
 
-  render() {
-    const { new_todo } = this.state;    
-    const { todos, show_new_todo, screen, deleteTodo, updateTodo } = this.props;
+  render() {  
+    const { todos, deleteTodo, updateTodo } = this.props;
 
     let listItem = [];
     if(todos.length > 0){      
@@ -118,6 +121,7 @@ class ToDoAll extends Component {
 
     return (
         <Container>
+<<<<<<< HEAD
           <Image source={require('./starry.jpeg')}
       style={StyleSheet.backgroundImage}>
       {this.props.children}
@@ -127,17 +131,21 @@ class ToDoAll extends Component {
                     <Title>{ screen }</Title>
                 </Body>                
             </Header>
+=======
+>>>>>>> c1001cd03a1fe4cdfee7b6a696bf28aba8560e27
             <Content>  
               { listItem }
-              {new_todo && 
-                <NewToDo 
-                  onPress = {
-                    this.saveToDoData
-                    }
-                  onCancel = { this.addNewToDo }
-                />
-              }
-            </Content>             
+            </Content>
+            <View
+            style={{height: 50, width: '50%', backgroundColor: '00000000'}}
+            >
+            { this.state.showFilter == 'colors' && 
+              <FilterPicker pickables={Colors} onValueChange={(value) => {this.onUpdateFilters('colorFilter', value)}}/>
+            }
+            { this.state.showFilter == 'priorities' &&
+              <FilterPicker pickables={Priorities} onValueChange={(value) => {this.onUpdateFilters('priorityFilter', value)}}/>
+            }
+            </View>
             <SuperFAB fabs= {this.fabs} />
         </Container>
     );

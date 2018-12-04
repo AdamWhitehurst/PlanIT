@@ -17,7 +17,7 @@ export default class DataPicker extends Component {
             androidMode={"default"}
             placeHolderText="Select date"
             textStyle={{ color: "green" }}
-            placeHolderTextStyle={{ color: "#d3d3d3" }}
+            placeHolderTextStyle={{ color: "#d3d3d3", textAlign: 'center' }}
             onDateChange={this.props.setDate}
             />
         </Content>
