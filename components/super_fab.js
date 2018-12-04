@@ -11,6 +11,7 @@ class BaseSuperFAB extends React.Component {
     }
 
     render() {
+        const { fabs } = this.props; 
         return (
             <Container>
                 <Fab
@@ -20,22 +21,20 @@ class BaseSuperFAB extends React.Component {
                 onPress={() => this.setState( prevState => {return {active: !prevState.active};})}
                 style={{ backgroundColor: '#5067FF' }}>
                     <Icon name="ios-paper-plane" />
-                    <Fab
-                    style={{ backgroundColor: 'green' }}
-                    onPress={() => { this.props.navigation.navigate('MyModal')}}
-                    >
-                        <Icon name="add" />
-                    </Fab>
-                    <Fab
-                    style={{ backgroundColor: 'purple' }}
-                    >
-                        <Icon name="ios-star" />
-                    </Fab>
-                    <Fab
-                    style={{ backgroundColor: 'orange' }}
-                    >
-                        <Icon name="ios-color-palette" />
-                    </Fab>
+
+                    {
+                        fabs.map ( (fab, index) => {
+                            return (
+                                <Fab
+                                key = {index}
+                                style={{ backgroundColor: fab.backgroundColor }}
+                                onPress={fab.func}
+                                >
+                                    <Icon name={fab.icon} />
+                                </Fab>
+                            );
+                        })
+                    }
                 </Fab>
             </Container>
         );
