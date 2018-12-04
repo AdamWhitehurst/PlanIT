@@ -61,7 +61,12 @@ export class BaseModalScreen extends Component {
         placeholder='Description'/>
 
           <DatePicker setDate={(date) => this.updateInput('date', date )}/>
-          <Button full success onPress={ () => { this.props.navigation.goBack() }}>/* TODO: ADD COOL TEXT HERE */</Button>
+          <Button full success onPress={ () => {}}>
+            <Text>SAVE</Text>
+          </Button>
+          <Button full danger onPress={ () => { this.props.navigation.goBack() }}>
+          <Text>CANCEL</Text>
+          </Button>
         </Content>
       </Container>
     );
