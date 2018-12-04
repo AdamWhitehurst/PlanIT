@@ -118,6 +118,10 @@ class ToDoAll extends Component {
 
     return (
         <Container>
+          <Image source={require('./starry.jpeg')}
+      style={StyleSheet.backgroundImage}>
+      {this.props.children}
+      </Image>
             <Header>                
                 <Body>
                     <Title>{ screen }</Title>
@@ -160,3 +164,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(withNavigationToDoAll)
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+      flex: 1,
+      width: null,
+      height: null,
+      resizeMode: 'cover'
+  }});
