@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Input, Container, Header, Content, Button, Text } from 'native-base';
+import DatePicker from './date_picker';
+import { FilterPicker } from './filter_picker';
 // Navigation Imports
 import { withNavigation } from 'react-navigation';
-import DatePicker from './date_picker';
 // Redux Imports
 import { connect } from 'react-redux';
 import { addTodo, deleteTodo, updateTodo } from '../store/todo_reducer';
+import { Colors } from '../constants/colors';
+import { Priorities } from '../constants/priorities';
 
 class BaseModalScreen extends Component {
   constructor () {
@@ -70,6 +73,10 @@ class BaseModalScreen extends Component {
           />
 
           <DatePicker setDate={(date) => this.updateInput('date', date )}/>
+
+          <FilterPicker pickables={Priorities} onValueChange={(value) => {this.updateInput('priority', value)}}/>
+
+          <FilterPicker pickables={Colors} onValueChange={(value) => {this.updateInput('color', value)}}/>
 
           <Button full success onPress={ this.saveToDo }>
             <Text>SAVE</Text>

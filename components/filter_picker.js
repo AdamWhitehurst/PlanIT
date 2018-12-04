@@ -1,21 +1,32 @@
 import React from "react";
-import { Picker } from "native-base";
+import { Picker, Content } from "native-base";
 
-export const FilterPicker = (props) => {
-  const { pickables } = props;
-  return (
+export class FilterPicker extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: this.props.pickables[0],
+    };
+  }
+  render () {
+    return (
       <Picker
-        note
-        mode="dropdown"
-        selectedValue={pickables[0]}
-        onValueChange={props.onValueChange}
+      note
+      mode="dropdown"
+      selectedValue={this.state.value}
+      onValueChange={(value) => {
+        this.setState({value: value});
+        this.props.onValueChange(value)
+        }}
       >
-      {
-        pickables.map((value, i) => {
-          console.log(value);
-          return <Picker.Item label={value} key={i} value={value} />;
-        })
-      }
-      </Picker>
-  );
+        {
+          this.props.pickables.map((value, i) => {
+            console.log(value);
+            return <Picker.Item label={value} key={i} value={value} />;
+          })
+        }
+        </Picker>
+    );
+  }
 }
