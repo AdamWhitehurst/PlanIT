@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { TabBarBottom, createStackNavigator, TabNavigator } from 'react-navigation';
 import ToDoAll from './components/todo_all';
 import {Icon} from 'native-base';
-import { ModalScreen } from './components/awesome_modal';
+import ModalScreen from './components/awesome_edit_modal';
 
 class CompletedToDoTab extends Component {
   render() {
@@ -29,9 +29,22 @@ class AllToDoTab extends Component {
 }
 
 const MainTabNavigator = TabNavigator({
-  All: { screen: AllToDoTab },
-  Active: { screen: ActiveToDoTab },
-  Completed: { screen: CompletedToDoTab },
+  All: { 
+    screen: AllToDoTab,
+    navigationOptions: ({ navigation }) => ({
+      header: null
+    }),
+  },
+  Active: { screen: ActiveToDoTab,
+    navigationOptions: ({ navigation }) => ({
+      header: null
+    }),
+  },
+  Completed: { screen: CompletedToDoTab,
+    navigationOptions: ({ navigation }) => ({
+      header: null
+    }),
+  },
 },{
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {
