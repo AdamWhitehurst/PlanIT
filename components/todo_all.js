@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Alert} from 'react-native';
-import { Container, Header, Title, Content, Body, Text, Icon } from 'native-base';
-import NewToDo from './new_todo';
+import { Container, Header, Title, Content, Body, } from 'native-base';
 import SuperFAB from './super_fab';
 import ToDoItem from './todo_item';
 import { connect } from 'react-redux';
@@ -15,7 +14,6 @@ class ToDoAll extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        new_todo: false,
         colors: false,
         priorities: false,
     };
@@ -49,31 +47,6 @@ class ToDoAll extends Component {
     })
   }
 
-  saveToDoData = (todo) => {
-    let verified = this.verifyToDo(todo);
-    if (verified){
-      this.addNewToDo(show = false);
-      this.props.addTodo(todo); 
-    }   
-  }
-
-  addNewToDo = (show) => {
-    this.setState({
-      new_todo: show
-    });
-  }  
-  
-  verifyToDo (todo) {
-    let verified = true;
-    // Empty title check
-    if (todo.title.trim() == '') {
-      Alert.alert ("Hey!","Add a title, dummy!", [{text: 'My bad.', onPress: ()=> {}}]);
-      verified = false;
-    }
-
-    return verified;
-  }
-
   screenFilterTodos = () => {
     const{ screen, todos } = this.props;
     if( screen == "Active"){
@@ -93,15 +66,12 @@ class ToDoAll extends Component {
     this.setState( prevState => {
       newState = prevState;
       newState[filter] = value;
-      console.log ("New State: ");
-      console.log(newState);
       return newState;
     });
   }
 
-  render() {
-    const { new_todo } = this.state;    
-    const { todos, show_new_todo, screen, deleteTodo, updateTodo } = this.props;
+  render() {  
+    const { todos, screen, deleteTodo, updateTodo } = this.props;
 
     let listItem = [];
     if(todos.length > 0){      
@@ -118,21 +88,8 @@ class ToDoAll extends Component {
 
     return (
         <Container>
-            <Header>                
-                <Body>
-                    <Title>{ screen }</Title>
-                </Body>                
-            </Header>
             <Content>  
               { listItem }
-              {new_todo && 
-                <NewToDo 
-                  onPress = {
-                    this.saveToDoData
-                    }
-                  onCancel = { this.addNewToDo }
-                />
-              }
             </Content>             
             <SuperFAB fabs= {this.fabs} />
         </Container>
