@@ -16,7 +16,37 @@ class ToDoAll extends Component {
     super(props);
     this.state = {
         new_todo: false,
+        colors: false,
+        priorities: false,
     };
+
+    this.fabs = [
+      {
+        icon: 'add',
+        backgroundColor: 'green',
+        func: () => {this.props.navigation.navigate('MyModal')},
+      },
+      {
+        icon: 'ios-star',
+        backgroundColor: 'purple',
+        func: () => {this.toggleFilter('priorities')},
+      },
+      {
+        icon: 'ios-color-palette',
+        backgroundColor: 'orange',
+        func: () => {this.toggleFilter('colors')},
+      },
+
+    ];
+  }
+
+  toggleFilter (filter) {
+    this.setState ( prevState => {
+      let newState = prevState;
+      newState[filter] = !prevState[filter];
+      console.log(newState);
+      return newState;
+    })
   }
 
   saveToDoData = (todo) => {
@@ -104,7 +134,7 @@ class ToDoAll extends Component {
                 />
               }
             </Content>             
-            <SuperFAB onUpdateFilters = {() => { this.onUpdateFilters }} />
+            <SuperFAB fabs= {this.fabs} />
         </Container>
     );
   }
