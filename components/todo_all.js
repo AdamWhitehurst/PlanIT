@@ -8,6 +8,7 @@ import { withNavigation } from 'react-navigation';
 import { FilterPicker } from './filter_picker';
 import { Colors } from '../constants/colors';
 import { Priorities } from '../constants/priorities';
+import {Times} from '../constants/times';
 
 class ToDoAll extends Component {
   
@@ -17,6 +18,7 @@ class ToDoAll extends Component {
         showFilter: '',
         colorFilter: undefined,
         priorityFilter: undefined,
+        timesFilter: undefined,
     };
 
     this.fabs = [
@@ -52,7 +54,14 @@ class ToDoAll extends Component {
           });
         },
       },
+      {
+        icon: 'ios-alarm',
+        backgroundColor: '#009688',
+        func: () => {
+          this.toggleFilter('times')
 
+        }
+      },
     ];
   }
 
@@ -121,18 +130,6 @@ class ToDoAll extends Component {
 
     return (
         <Container>
-<<<<<<< HEAD
-          <Image source={require('./starry.jpeg')}
-      style={StyleSheet.backgroundImage}>
-      {this.props.children}
-      </Image>
-            <Header>                
-                <Body>
-                    <Title>{ screen }</Title>
-                </Body>                
-            </Header>
-=======
->>>>>>> c1001cd03a1fe4cdfee7b6a696bf28aba8560e27
             <Content>  
               { listItem }
             </Content>
@@ -144,6 +141,9 @@ class ToDoAll extends Component {
             }
             { this.state.showFilter == 'priorities' &&
               <FilterPicker pickables={Priorities} onValueChange={(value) => {this.onUpdateFilters('priorityFilter', value)}}/>
+            }
+            { this.state.showFilter == 'times' &&
+              <FilterPicker pickables={Times} onValueChange={(value) => {this.onUpdateFilters('timesFilter', value)}}/>
             }
             </View>
             <SuperFAB fabs= {this.fabs} />
@@ -173,10 +173,3 @@ export default connect(
   mapDispatchToProps,
 )(withNavigationToDoAll)
 
-const styles = StyleSheet.create({
-  backgroundImage: {
-      flex: 1,
-      width: null,
-      height: null,
-      resizeMode: 'cover'
-  }});
