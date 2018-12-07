@@ -9,6 +9,9 @@ import { FilterPicker } from './filter_picker';
 import { Colors } from '../constants/colors';
 import { Priorities } from '../constants/priorities';
 import {Times} from '../constants/times';
+import CountDown from 'react-native-countdown-component' 
+import { Text, TouchableOpacity } from "react-native";
+import Modal from "react-native-modal";
 
 class ToDoAll extends Component {
   
@@ -19,8 +22,10 @@ class ToDoAll extends Component {
         colorFilter: undefined,
         priorityFilter: undefined,
         timesFilter: undefined,
+        isModalVisible: false,
+       
     };
-
+    
     this.fabs = [
       {
         icon: 'add',
@@ -44,6 +49,14 @@ class ToDoAll extends Component {
         },
       },
       {
+        icon: 'ios-alarm',
+        backgroundColor: '#009688',
+        func: () => {
+          this.toggleFilter('times')
+
+        }
+      },
+      {
         icon: 'ios-backspace',
         backgroundColor: 'red',
         func: () => {
@@ -54,14 +67,7 @@ class ToDoAll extends Component {
           });
         },
       },
-      {
-        icon: 'ios-alarm',
-        backgroundColor: '#009688',
-        func: () => {
-          this.toggleFilter('times')
-
-        }
-      },
+     
     ];
   }
 
@@ -73,6 +79,8 @@ class ToDoAll extends Component {
       this.setState({showFilter: filter});
     }
   }
+ 
+ 
 
   screenFilterTodos = () => {
     const{ screen, todos } = this.props;
@@ -111,6 +119,13 @@ class ToDoAll extends Component {
       return newState;
     });
   }
+  _toggleModal(visible){
+  this.setState({ isModalVisible: visible });
+  }
+
+  modalTime(){
+  this._toggleModal(true);
+}
 
   render() {  
     const { todos, deleteTodo, updateTodo } = this.props;
@@ -143,10 +158,30 @@ class ToDoAll extends Component {
               <FilterPicker pickables={Priorities} onValueChange={(value) => {this.onUpdateFilters('priorityFilter', value)}}/>
             }
             { this.state.showFilter == 'times' &&
-              <FilterPicker pickables={Times} onValueChange={(value) => {this.onUpdateFilters('timesFilter', value)}}/>
+              <FilterPicker pickables={Times} onValueChange={(value) => {this.onUpdateFilters('timesFilter', value); this.modalTime()}}/>
+            
             }
-            </View>
+            <Modal visible ={this.state.isModalVisible}>
+              <View style={{ alignItems: 'center'}}>
+                <Text>Timer: Work for</Text>
+               <CountDown  
+               until={60*global.val}
+               timeToShow={['M', 'S']}
+                onFinish={() => alert('finished')}
+                onPress={() => alert('hello')}
+                size={40}
+                />
+                
+                <TouchableOpacity onPress={() => {this._toggleModal(!this.state.isModalVisible)}}>
+                  <Text>Close!</Text>
+                </TouchableOpacity>
+              </View>
+            </Modal>
+          </View>
+            
+            
             <SuperFAB fabs= {this.fabs} />
+            
         </Container>
     );
   }

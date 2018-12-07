@@ -18,12 +18,14 @@ export class FilterPicker extends React.Component {
       onValueChange={(value) => {
         this.setState({value: value});
         this.props.onValueChange(value)
+        global.val = value;
         }}
       >
         {
           this.props.pickables.map((value, i) => {
             console.log(value);
             return <Picker.Item label={value} key={i} value={value} />;
+           
           })
         }
         </Picker>
